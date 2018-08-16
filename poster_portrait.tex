@@ -1,0 +1,271 @@
+
+%--------------------------------------------------------------------------------------------------------------------------------------------------------
+%   PRE\^{A}MBULO
+%--------------------------------------------------------------------------------------------------------------------------------------------------------
+\documentclass[portrait,final,a0paper,fontscale=0.277]{baposter}
+\usepackage[brazil]{babel}
+\usepackage{calc}
+\usepackage{graphicx}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{relsize}
+\usepackage{multirow}
+\usepackage{rotating}
+\usepackage{bm}
+\usepackage{url}
+\usepackage{multicol}
+\usepackage{palatino}
+%\usepackage{times}
+%\usepackage{helvet}
+%\usepackage{bookman}
+
+
+\newtheorem{teorema}{Teorema}%[section]
+\newtheorem{conjectura}{Conjectura}%[section]
+
+\graphicspath{{images/}{../images/}}
+\usetikzlibrary{calc}
+
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Multicol Settings
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\setlength{\columnsep}{1.5em}
+\setlength{\columnseprule}{0mm}
+
+
+%--------------------------------------------------------------------------------------------------------------------------------------------------------
+%   CORPO DO TEXTO
+%--------------------------------------------------------------------------------------------------------------------------------------------------------
+
+\begin{document}
+
+%--------------------------------------------------------------------------------------------------------------------------------------------------------
+% Definindo as cores
+
+%\definecolor{lightblue}{cmyk}{0.83,0.24,0,0.12}
+\definecolor{lightblue}{rgb}{0.145,0.6666,1}
+%--------------------------------------------------------------------------------------------------------------------------------------------------------
+
+
+\hyphenation{resolution occlusions}
+
+
+
+\begin{poster}%
+  % Poster Options
+  {
+  % Show grid to help with alignment
+  grid=false,
+  % Column spacing
+  colspacing=1em,
+  % Color style
+  bgColorOne=white,
+  bgColorTwo=white,
+  borderColor=lightblue,
+  headerColorOne=black,
+  headerColorTwo=lightblue,
+  headerFontColor=white,
+  boxColorOne=white,
+  boxColorTwo=lightblue,
+  % Format of textbox
+  textborder=roundedleft,
+  % Format of text header
+  eyecatcher=true,
+  headerborder=closed,
+  headerheight=0.1\textheight,
+%  textfont=\sc, An example of changing the text font
+  headershape=roundedright,
+  headershade=shadelr,
+  headerfont=\Large\bf\textsc, %Sans Serif
+  textfont={\setlength{\parindent}{1.5em}},
+  boxshade=plain,
+%  background=shade-tb,
+  background=plain,
+  linewidth=2pt
+  }
+  % LOGO DA UNIVERSIDADE
+  {% The makebox allows the title to flow into the logo, this is a hack because of the L shaped logo.
+    \includegraphics[height=9.0em]{images/Brasao_UFC}
+  }
+  % T\'{I}TULO
+  {\bf\textsc{M\'{e}todo da Entropia M\'{a}xima}\vspace{0.5em}}
+  % AUTORES:
+  {\textsc{ Walner Mendon\c{c}a dos Santos \\ \small{ Orientador: Fabricio Siqueira Benevides \\ Universidade Federal do Cear\'{a}}}}
+  % LOGO DO GRUPO DE PESQUISA
+  %{\includegraphics[height=5em]{images/graph_occluded.pdf}}
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%% Now define the boxes that make up the poster
+%%%---------------------------------------------------------------------------
+%%% Each box has a name and can be placed absolutely or relatively.
+%%% The only inconvenience is that you can only specify a relative position
+%%% towards an already declared box. So if you have a box attached to the
+%%% bottom, one to the top and a third one which should be in between, you
+%%% have to specify the top and bottom boxes before you specify the middle
+%%% box.
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+
+
+%--------------------------------------------------------------------------------------------------------------------------------------------------------
+  \headerbox{Introdu\c{c}\~{a}o}{name=introduction,column=0,row=0}{
+%--------------------------------------------------------------------------------------------------------------------------------------------------------
+
+    Uma arma poderosa no estudo de problemas extremais de grafos \'{e} o lema da regularidade de Szemer\'{e}di (1978) e seus diversos variantes. Em conjunto com o \emph{blowing up lemma} ele tem sido aplicado a in\'{u}meros problemas em combinat\'{o}ria. Antes de enunciarmos tais resultados, precisaremos de algumas nota\c{c}\~{o}es.
+
+    Dado um grafo $G=(V,E)$ e $X,Y\subseteq V$ subconjuntos disjuntos de v\'{e}rtices, denotamos por $\|X,Y\|$ o n\'{u}mero de arestas que conectam um v\'{e}rtice de $X$ a um v\'{e}rtice de $Y$ em $G$. Al\'{e}m disso, chamamos de \emph{densidade} do par $(X,Y)$ o seguinte n\'{u}mero
+    $$d(X,Y) = \frac{\|X,Y\|}{|X| |Y|}.$$
+
+    Dados $A,B\subseteq V$ subconjuntos disjuntos de v\'{e}rtices e dado $\epsilon > 0$, dizemos que o par $(A,B)$ \'{e} \emph{$\epsilon$-regular} se para todo $X\subseteq A$ e $Y\subseteq B$ com $|X| \geq \epsilon |A|$ e $|Y| \geq \epsilon |B|$ tivermos que
+    $$|d(X,Y) - d(A,B)| \leq \epsilon. $$
+
+    Considere uma parti\c{c}\~{a}o $\{V_0,V_1,\ldots,V_k\}$ de $V$. Dizemos que tal parti\c{c}\~{a}o \'{e} \emph{$\epsilon$-regular} se ela satisfaz as seguintes condi\c{c}\~{o}es:
+    \begin{enumerate}
+      \item[(i)] $|V_0| \leq \epsilon |V|$;
+      \item[(ii)] $|V_1| = \ldots = |V_k|$;
+      \item[(iii)] todos os pares $(V_i,V_j)$, com $1\leq i < j \leq k$, exceto no m\'{a}ximo $\epsilon k^2$, s\~{a}o regulares.
+    \end{enumerate}
+    Dizemos que $V_0$ \'{e} um \emph{conjunto excepcional}, pois ele desempenha um papel diferente dos demais $V_i$. De fato, $V_0$ possibilita que as outras parti\c{c}\~{o}es tenham o mesmo tamanho.
+
+    Considere uma parti\c{c}\~{a}o $\epsilon$-regular $\mathcal{P} = \{V_0,V_1,\ldots,V_k\}$, com conjunto excepcional $V_0$ e $|V_1| = \ldots = |V_k| =: l$. Dado $0\leq d \leq 1$, definimos o \emph{grafo de regularidade} $R$ (com par\^{a}metros $\epsilon, l$, e $d$) da parti\c{c}\~{a}o $\mathcal{P}$  como o grafo no qual o conjunto de v\'{e}rtices \'{e} $V(R) = \{V_1,\ldots,V_k\}$ e dois v\'{e}rtices $V_i V_j$ s\~{a}o adjacentes se, e somente se, $(V_i,V_j)$ \'{e} um par $\epsilon$-regular com densidade pelo menos $d$.
+
+    Dado $s\in\mathbb{N}$, consideramos o grafo $R_s$ (o \emph{blowing up} de $R$) como o grafo obtido trocando cada v\'{e}rtice $V_i$ de $R$ por um conjunto $V_i^s$ de $s$ v\'{e}rtices e conectando dois v\'{e}rtices $x$ e $y$ se, e somente se, $x\in V_i$ e $y\in V_j$, com $i\neq j$ e $V_i V_j \in E(R)$.
+
+\vspace{0.3em}}
+
+
+
+
+
+%--------------------------------------------------------------------------------------------------------------------------------------------------------
+  \headerbox{Refer\^{e}ncias}{name=references,column=0,below=introduction}{
+%--------------------------------------------------------------------------------------------------------------------------------------------------------
+\vspace{-0.4em}	
+    \smaller
+    \bibliographystyle{ieee}
+    \renewcommand{\section}[2]{\vskip 0.05em}
+      \begin{thebibliography}{1}\itemsep=-0.01em
+      \setlength{\baselineskip}{0.4em}
+
+      \bibitem{diestel}
+        R.~Diestel.
+        \newblock {Graph theory}.
+        \newblock Graduate Texts in Mathematics, Third Ed., Springer-Verlag (2005).
+
+      \bibitem{rob}
+        R. ~Morris \& R. ~Imbuzeiro.
+        \newblock Extremal Probabilistic Combinatorics.
+        \newblock $28^\circ$ Col\'{o}quio Brasileiro de Matem\'{a}tica, IMPA (2011).
+      \end{thebibliography}
+
+\vspace{-0.4em}}
+
+
+
+
+%--------------------------------------------------------------------------------------------------------------------------------------------------------
+\headerbox{Agradecimentos}{name=agradecimentos,column=0, below=references}{
+%--------------------------------------------------------------------------------------------------------------------------------------------------------
+
+\smaller						% Make the whole text smaller
+\vspace{-0.4em}			% Save some space at the beginning
+\hspace{-2.2em}
+Agrade\c{c}o ao Prof. Dr. Fabricio Siqueira Benevides pelos conselhos, orienta\c{c}\~{o}es, incentivos, corre\c{c}\~{o}es e apoio. Este trabalho foi apoiado pela FUNCAP.
+
+\vspace{0.3em}}
+
+
+
+
+%--------------------------------------------------------------------------------------------------------------------------------------------------------
+\headerbox{Lema da Regularidade}{name=grade1,column=1,span=2,row=0}{
+%--------------------------------------------------------------------------------------------------------------------------------------------------------
+\vspace{-0.4em}	
+\begin{multicols}{2}
+
+    Dado um grafo qualquer, que a priori nada sabemos sobre sua estrutura e nem como ele foi constru\'{\i}do, o que podemos dizer sobre ele? O m\'{e}todo probabil\'{\i}stico nos permite fazer algumas afirma\c{c}\~{o}es sobre grafos que s\~{a}o constru\'{\i}dos de maneira aleat\'{o}ria, mas em geral, para um grafo que n\~{a}o \'{e} aleat\'{o}rio, \'{e} muito dif\'{\i}cil dizermos algo. Contudo, o lema da regularidade de Szemer\'{e}di nos permite caracterizar a estrutura de grafos suficientemente grandes.
+    \begin{teorema}[Lema da Reg. de Szemer\'{e}di]\label{lrs}
+      Para todo $\epsilon>0$ e todo inteiro $m\geq 1$, existe um inteiro $M:=M(\epsilon,m)$ tal que todo grafo de ordem pelo menos $m$ admite uma parti\c{c}\~{a}o $\epsilon$-regular $\{V_0,V_1,\ldots,V_k\}$ com $m \leq k \leq M$.
+    \end{teorema}
+
+    O lema da regularidade foi concebido pela primeira vez para provar um importante resultado de Teoria dos N\'{u}meros. Dado um subconjunto $A\subseteq \mathbb{N}$, a densidade superior de $A$ \'{e} dada por
+    $$
+     \overline{d}(A) = \limsup_{n\rightarrow \infty} \frac{|A\cap \{1,2, \ldots, n\}|}{n}.
+    $$
+    Em 1936, Erd\H{o}s e Tur\'{a}n conjecturaram o seguinte resultado que foi posteriormente provado por Szemer\'{e}di.
+    \begin{teorema}[Szemer\'{e}di]
+      Se $\overline{d}(A) >0$, ent\~{a}o $A$ cont\'{e}m progress\~{o}es aritm\'{e}ticas arbitrariamente longas.
+    \end{teorema}
+
+    Em 1953, Roth mostrou a validade do resultado acima para progress\~{o}es aritm\'{e}ticas de comprimento 3. Em 1969, Szemer\'{e}di provou para progress\~{o}es aritm\'{e}ticas de comprimento 4. Em 1975, Szemer\'{e}di provou completamente tal resultado usando uma vers\~{a}o fraca do lema da regularidade para grafos bipartidos. Em 1978 ele provou a vers\~{a}o completa do lema tal como o conhecemos hoje.
+
+\end{multicols}
+\vspace{-0.6em}}
+
+
+
+
+
+%--------------------------------------------------------------------------------------------------------------------------------------------------------
+\headerbox{Blowing Up Lemma}{name=grade2,column=1,span=2,below=grade1}{
+%--------------------------------------------------------------------------------------------------------------------------------------------------------
+\vspace{-0.4em}	
+\begin{multicols}{2}
+
+    O teorema \ref{lrs} \'{e} surpreendente por si s\'{o}, mas em muitas de suas aplica\c{c}\~{o}es em teoria dos grafos ele aparece em conjunto com um resultado o qual chamamos de \emph{blowing up lemma}. A ideia \'{e} a seguinte: suponha que queremos encontrar uma c\'{o}pia de um grafo $H$ em $G$. Para tanto, aplicamos o lema da regularidade, o qual nos retorna uma parti\c{c}\~{a}o $\epsilon$-regular com um n\'{u}mero limitado de partes. Consideramos o grafo de regularidade $R$ com par\^{a}metros $\epsilon,l,d$ referente a parti\c{c}\~{a}o dada e o \emph{blowing up} $R_s$, para um $s$ natural. Se conseguirmos provar que $H\subseteq R_s$, gostar\'{\i}amos muito de poder concluir que $H\subseteq G$. O que o blowing up lemma afirma \'{e} que podemos concluir isto desde que algumas hip\'{o}teses sobre os par\^{a}metros de regularidade $\epsilon,l,d$ sejam asseguradas.
+    \begin{teorema}[Blowing Up Lemma]
+      Para todo $d\in (0,1]$ e $\Delta \geq 1$, existe um $\epsilon_0 > 0$ com a seguinte propriedade: se $G$ \'{e} qualquer grafo, $H$ \'{e} um grafo com $\Delta(H) \leq \Delta$, $s\in \mathbb{N}$, e $R$ \'{e} qualquer grafo de regularidade de $G$ com par\^{a}metros $\epsilon \leq \epsilon_0$, $l \geq 2s/d^{\Delta}$ e $d$, ent\~{a}o
+      $$
+       H \subseteq R_s \Rightarrow H \subseteq G.
+      $$
+    \end{teorema}
+
+    A prova deste lema \'{e} independente do lema da regularidade, mas usa fortemente a estrutura da parti\c{c}\~{a}o $\epsilon$-regular. Em \cite{diestel}, pode-se encontrar a prova por completa.
+
+\end{multicols}
+\vspace{-0.6em}}
+
+
+
+
+
+%--------------------------------------------------------------------------------------------------------------------------------------------------------
+\headerbox{Aplica\c{c}\~{o}es}{name=grade3,column=1,span=2,below=grade2,above=bottom}{
+%--------------------------------------------------------------------------------------------------------------------------------------------------------
+\vspace{-0.4em}	
+\begin{multicols}{2}
+
+    S\~{a}o in\'{u}meras as aplica\c{c}\~{o}es do lema da regularidade. Estas aparecem em \'{a}reas como teoria combinat\'{o}ria dos n\'{u}meros, teoria de Ramsey, complexidade computacional e principalmente em teoria extremal dos grafos. Uma aplica\c{c}\~{a}o t\'{\i}pica e que bem ilustra como o blowing up lemma \'{e} aplicado junto do lema da regularidade \'{e} o Teorema de Erd\H{o}s \& Stone. Este resultado \'{e} uma generaliza\c{c}\~{a}o e aplica\c{c}\~{a}o de um teorema cl\'{a}ssico em teoria extremal dos grafos:
+    \begin{teorema}[Tur\'{a}n]
+      Se $G$ \'{e} um grafo com $n$ v\'{e}rtices sem uma $r$-clique, $r\geq2$, ent\~{a}o o n\'{u}mero de arestas de $G$ \'{e} no m\'{a}ximo
+      $$
+       \left(1 - \frac{1}{r-1} \right)\frac{n^2}{2}.
+      $$
+    \end{teorema}
+
+    No teorema de Tur\'{a}n estamos interessados em determinar o n\'{u}mero m\'{a}ximo de arestas de um grafo sem uma $r$-clique. \'{E} natural pensarmos no mesmo problema, mas trocando o grafo indesejado, a $r$-clique, por outro grafo qualquer. Por exemplo, podemos nos perguntar qual \'{e} o n\'{u}mero m\'{a}ximo de arestas de um grafo sem um subgrafo $s$-partido $r$-completo $K_s^r$. O teorema de Erd\H{o}s \& Stone nos d\'{a} a resposta para este problema.
+    \begin{teorema}[Erd\H{o}s \& Stones]
+      Para todos $r\geq 2$ e $s\geq 1$ inteiros e $\epsilon >0$ real, existe um inteiro $n_0$ tal que todo grafo com $n\geq n_0$ v\'{e}rtices e pelo menos
+      $$
+       \left(1 - \frac{1}{r-1} \right)\frac{n^2}{2} + \epsilon n^2
+      $$
+      arestas cont\'{e}m um $K_s^r$ como um subgrafo.
+    \end{teorema}
+
+    Para provar este teorema usando o lema da regularidade e o blowing up lemma \'{e} necess\'{a}rio mostrar que o $R_s$ cont\'{e}m um $K_s^r$. Para isso usamos o Teorema de Tur\'{a}n para mostrar que o grafo de regularidade $R$ cont\'{e}m um $K^r$. A prova completa pode ser encontrada em \cite{diestel,rob}.
+
+\end{multicols}
+\vspace{-0.6em}}
+
+
+%--------------------------------------------------------------------------------------------------------------------------------------------------------
+%   FIM DO DOCUMENTO
+%--------------------------------------------------------------------------------------------------------------------------------------------------------
+\end{poster}
+\end{document} 
